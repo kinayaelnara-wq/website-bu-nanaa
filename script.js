@@ -1,28 +1,28 @@
 // Data Menu Lengkap Bu Nana dengan Icon/Visual
 const makanan = [
-    { nama: "Lotek", harga: 13000, icon: "🥗", gambar: "gambar/lotek.jpg" },
-    { nama: "Kupat Tahu", harga: 13000, icon: "🍲", gambar: "gambar/kupat-tahu.jpg" },
-    { nama: "Nasi Ayam Geprek", harga: 13000, icon: "🍗", gambar: "gambar/nasi-ayam-geprek.jpg" },
-    { nama: "Nasi Goreng", harga: 13000, icon: "🍛", gambar: "gambar/nasi-goreng.jpg" },
-    { nama: "Nasi Telor", harga: 13000, icon: "🍳", gambar: "gambar/nasi-telor.jpg" },
-    { nama: "IndTel Goreng", harga: 13000, icon: "🍜", gambar: "gambar/indtel-goreng.jpg" },
-    { nama: "IndTel Rebus", harga: 13000, icon: "🍜", gambar: "gambar/indtel-rebus.jpg" },
-    { nama: "Soto", harga: 10000, icon: "🍲", gambar: "gambar/soto.jpg" }
+    { nama: "Lotek", harga: 13000, icon: "🥗", gambar: "lotek.jpg" },
+    { nama: "Kupat Tahu", harga: 13000, icon: "🍲", gambar: "kupat-tahu.jpg" },
+    { nama: "Nasi Ayam Geprek", harga: 13000, icon: "🍗", gambar: "nasi-ayam-geprek.jpg" },
+    { nama: "Nasi Goreng", harga: 13000, icon: "🍛", gambar: "nasi-goreng.jpg" },
+    { nama: "Nasi Telor", harga: 13000, icon: "🍳", gambar: "nasi-telor.jpg" },
+    { nama: "IndTel Goreng", harga: 13000, icon: "🍜", gambar: "indtel-goreng.jpg" },
+    { nama: "IndTel Rebus", harga: 13000, icon: "🍜", gambar: "indtel-rebus.jpg" },
+    { nama: "Soto", harga: 10000, icon: "🍲", gambar: "soto.jpg" }
 ];
 
 const minuman = [
-    { nama: "Es Teh", harga: 3000, icon: "🧋", gambar: "gambar/es-teh.jpg" },
-    { nama: "LemonTea", harga: 4000, icon: "🍋", gambar: "gambar/lemontea.jpg" },
-    { nama: "Es Jeruk", harga: 4000, icon: "🍊", gambar: "gambar/es-jeruk.jpg" },
-    { nama: "Nutrisari", harga: 4000, icon: "🧃", gambar: "gambar/nutrisari.jpg" },
-    { nama: "Kopi Hitam", harga: 5000, icon: "☕", gambar: "gambar/kopi-hitam.jpg" },
-    { nama: "Gooday", harga: 5000, icon: "🥤", gambar: "gambar/gooday.jpg" },
-    { nama: "Cocolatos", harga: 5000, icon: "🧋", gambar: "gambar/cocolatos.jpg" },
-    { nama: "Milo", harga: 5000, icon: "🥛", gambar: "gambar/milo.jpg" },
-    { nama: "Bengbeng", harga: 5000, icon: "🍫", gambar: "gambar/bengbeng.jpg" },
-    { nama: "Teh Tarik", harga: 5000, icon: "🧋", gambar: "gambar/teh-tarik.jpg" },
-    { nama: "JosSua", harga: 7000, icon: "⚡", gambar: "gambar/jossua.jpg" },
-    { nama: "Dancow", harga: 7000, icon: "🍼", gambar: "gambar/dancow.jpg", isDancow: true }
+    { nama: "Es Teh", harga: 3000, icon: "🧋", gambar: "es-teh.jpg" },
+    { nama: "LemonTea", harga: 4000, icon: "🍋", gambar: "lemontea.jpg" },
+    { nama: "Es Jeruk", harga: 4000, icon: "🍊", gambar: "es-jeruk.jpg" },
+    { nama: "Nutrisari", harga: 4000, icon: "🧃", gambar: "nutrisari.jpg" },
+    { nama: "Kopi Hitam", harga: 5000, icon: "☕", gambar: "kopi-hitam.jpg" },
+    { nama: "Gooday", harga: 5000, icon: "🥤", gambar: "gooday.jpg" },
+    { nama: "Cocolatos", harga: 5000, icon: "🧋", gambar: "cocolatos.jpg" },
+    { nama: "Milo", harga: 5000, icon: "🥛", gambar: "milo.jpg" },
+    { nama: "Bengbeng", harga: 5000, icon: "🍫", gambar: "bengbeng.jpg" },
+    { nama: "Teh Tarik", harga: 5000, icon: "🧋", gambar: "teh-tarik.jpg" },
+    { nama: "JosSua", harga: 7000, icon: "⚡", gambar: "jossua.jpg" },
+    { nama: "Dancow", harga: 7000, icon: "🍼", gambar: "dancow.jpg", isDancow: true }
 ];
 
 // Ambil nomor meja dari URL parameter
