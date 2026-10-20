@@ -54,13 +54,16 @@ function tampilkanMenu(daftar, idElemen) {
             extraHTML = '<select id="select-dancow" style="margin: 5px 0; padding: 3px; font-size: 12px;"><option value="Putih">Putih</option><option value="Coklat">Coklat</option></select>';
         }
 
-        let visual;
-        if (item.gambar) {
-            visual = '<img src="' + item.gambar + '" alt="' + item.nama + '" loading="lazy" ' +
-                'onerror="this.outerHTML=\'<span class=&quot;emoji&quot;>' + item.icon + '</span>\'">';
-        } else {
-            visual = '<span class="emoji">' + item.icon + '</span>';
-        }
+        let visual = "";
+
+if (item.gambar) {
+    visual = '<img src="' + item.gambar +
+        '" alt="' + item.nama +
+        '" class="menu-image" loading="eager" ' +
+        'onerror="this.alt=\'Gagal: ' + item.gambar + '\';">';
+} else {
+    visual = '<span class="emoji">' + item.icon + '</span>';
+}
 
         card.innerHTML = '<div class="card-img-box">' + visual + '</div>' +
             '<h4>' + item.nama + '</h4>' +
