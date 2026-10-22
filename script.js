@@ -1,33 +1,38 @@
 // Data Menu Lengkap Bu Nana dengan Icon/Visual
 const makanan = [
-    { nama: "Lotek", harga: 13000, icon: "🥗", gambar: "lotek.jpg" },
-    { nama: "Kupat Tahu", harga: 13000, icon: "🍲", gambar: "kupat-tahu.jpg" },
-    { nama: "Nasi Ayam Geprek", harga: 13000, icon: "🍗", gambar: "nasi-ayam-geprek.jpg" },
-    { nama: "Nasi Goreng", harga: 13000, icon: "🍛", gambar: "nasi-goreng.jpg" },
-    { nama: "Nasi Telor", harga: 13000, icon: "🍳", gambar: "nasi-telor.jpg" },
-    { nama: "IndTel Goreng", harga: 13000, icon: "🍜", gambar: "indtel-goreng.jpg" },
-    { nama: "IndTel Rebus", harga: 13000, icon: "🍜", gambar: "indtel-rebus.jpg" },
-    { nama: "Soto", harga: 10000, icon: "🍲", gambar: "soto.jpg" }
+    { nama: "Lotek", harga: 13000, icon: "🥗", gambar: "gambar/lotek.jpg" },
+    { nama: "Kupat Tahu", harga: 13000, icon: "🍲", gambar: "gambar/kupat-tahu.jpg" },
+    { nama: "Nasi Ayam Geprek", harga: 13000, icon: "🍗", gambar: "gambar/nasi-ayam-geprek.jpg" },
+    { nama: "Nasi Goreng", harga: 13000, icon: "🍛", gambar: "gambar/nasi-goreng.jpg" },
+    { nama: "Nasi Telor", harga: 13000, icon: "🍳", gambar: "gambar/nasi-telor.jpg" },
+    { nama: "IndTel Goreng", harga: 13000, icon: "🍜", gambar: "gambar/indtel-goreng.jpg" },
+    { nama: "IndTel Rebus", harga: 13000, icon: "🍜", gambar: "gambar/indtel-rebus.jpg" },
+    { nama: "Soto", harga: 10000, icon: "🍲", gambar: "gambar/soto.jpg" }
 ];
 
 const minuman = [
-    { nama: "Es Teh", harga: 3000, icon: "🧋", gambar: "es-teh.jpg" },
-    { nama: "LemonTea", harga: 4000, icon: "🍋", gambar: "lemontea.jpg" },
-    { nama: "Es Jeruk", harga: 4000, icon: "🍊", gambar: "es-jeruk.jpg" },
-    { nama: "Nutrisari", harga: 4000, icon: "🧃", gambar: "nutrisari.jpg" },
-    { nama: "Kopi Hitam", harga: 5000, icon: "☕", gambar: "kopi-hitam.jpg" },
-    { nama: "Gooday", harga: 5000, icon: "🥤", gambar: "gooday.jpg" },
-    { nama: "Cocolatos", harga: 5000, icon: "🧋", gambar: "cocolatos.jpg" },
-    { nama: "Milo", harga: 5000, icon: "🥛", gambar: "milo.jpg" },
-    { nama: "Bengbeng", harga: 5000, icon: "🍫", gambar: "bengbeng.jpg" },
-    { nama: "Teh Tarik", harga: 5000, icon: "🧋", gambar: "teh-tarik.jpg" },
-    { nama: "JosSua", harga: 7000, icon: "⚡", gambar: "jossua.jpg" },
-    { nama: "Dancow", harga: 7000, icon: "🍼", gambar: "dancow.jpg", isDancow: true }
+    { nama: "Es Teh", harga: 3000, icon: "🧋", gambar: "gambar/es-teh.jpg" },
+    { nama: "LemonTea", harga: 4000, icon: "🍋", gambar: "gambar/lemontea.jpg" },
+    { nama: "Es Jeruk", harga: 4000, icon: "🍊", gambar: "gambar/es-jeruk.jpg" },
+    { nama: "Nutrisari", harga: 4000, icon: "🧃", gambar: "gambar/nutrisari.jpg" },
+    { nama: "Kopi Hitam", harga: 5000, icon: "☕", gambar: "gambar/kopi-hitam.jpg" },
+    { nama: "Gooday", harga: 5000, icon: "🥤", gambar: "gambar/gooday.jpg" },
+    { nama: "Cocolatos", harga: 5000, icon: "🧋", gambar: "gambar/cocolatos.jpg" },
+    { nama: "Milo", harga: 5000, icon: "🥛", gambar: "gambar/milo.jpg" },
+    { nama: "Bengbeng", harga: 5000, icon: "🍫", gambar: "gambar/bengbeng.jpg" },
+    { nama: "Teh Tarik", harga: 5000, icon: "🧋", gambar: "gambar/teh-tarik.jpg" },
+    { nama: "JosSua", harga: 7000, icon: "⚡", gambar: "gambar/jossua.jpg" },
+    { nama: "Dancow", harga: 7000, icon: "🍼", gambar: "gambar/dancow.jpg", isDancow: true }
 ];
 
 // Ambil nomor meja dari URL parameter
 const urlParams = new URLSearchParams(window.location.search);
 const nomorMeja = urlParams.get('meja') || 'Tanpa Meja';
+
+// =========================================================================
+// FITUR KERANJANG TERHUBUNG LOCALSTORAGE (Agar Tidak Hilang Saat Pindah Halaman)
+// =========================================================================
+let keranjang = JSON.parse(localStorage.getItem('keranjangBuNana')) || [];
 
 document.addEventListener("DOMContentLoaded", function() {
     const elMeja = document.getElementById("infoMeja");
@@ -37,6 +42,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     tampilkanMenu(makanan, "menuMakanan");
     tampilkanMenu(minuman, "menuMinuman");
+    
+    // Tampilkan keranjang yang tersimpan begitu halaman terbuka
+    perbaruiKeranjang();
 });
 
 // Fungsi Tampilkan Menu
@@ -54,16 +62,13 @@ function tampilkanMenu(daftar, idElemen) {
             extraHTML = '<select id="select-dancow" style="margin: 5px 0; padding: 3px; font-size: 12px;"><option value="Putih">Putih</option><option value="Coklat">Coklat</option></select>';
         }
 
-        let visual = "";
-
-if (item.gambar) {
-    visual = '<img src="' + item.gambar +
-        '" alt="' + item.nama +
-        '" class="menu-image" loading="eager" ' +
-        'onerror="this.alt=\'Gagal: ' + item.gambar + '\';">';
-} else {
-    visual = '<span class="emoji">' + item.icon + '</span>';
-}
+        let visual;
+        if (item.gambar) {
+            visual = '<img src="' + item.gambar + '" alt="' + item.nama + '" loading="lazy" ' +
+                'onerror="this.outerHTML=\'<span class=&quot;emoji&quot;>' + item.icon + '</span>\'">';
+        } else {
+            visual = '<span class="emoji">' + item.icon + '</span>';
+        }
 
         card.innerHTML = '<div class="card-img-box">' + visual + '</div>' +
             '<h4>' + item.nama + '</h4>' +
@@ -74,9 +79,6 @@ if (item.gambar) {
         kontainer.appendChild(card);
     });
 }
-
-// Fitur Keranjang Pesanan
-let keranjang = [];
 
 function tambahItem(namaDasar, harga, isDancow) {
     let namaFinal = namaDasar;
@@ -99,6 +101,9 @@ function tambahItem(namaDasar, harga, isDancow) {
     } else {
         keranjang.push({ nama: namaFinal, harga: harga, jumlah: 1 });
     }
+    
+    // Simpan ke memori browser
+    localStorage.setItem('keranjangBuNana', JSON.stringify(keranjang));
     perbaruiKeranjang();
 }
 
@@ -107,6 +112,9 @@ function ubahJumlah(index, delta) {
     if (keranjang[index].jumlah <= 0) {
         keranjang.splice(index, 1);
     }
+    
+    // Simpan ke memori browser
+    localStorage.setItem('keranjangBuNana', JSON.stringify(keranjang));
     perbaruiKeranjang();
 }
 
@@ -150,6 +158,7 @@ function perbaruiKeranjang() {
 
 function kosongkanKeranjang() {
     keranjang = [];
+    localStorage.removeItem('keranjangBuNana'); // Hapus memori browser saat dikosongkan
     perbaruiKeranjang();
 }
 
