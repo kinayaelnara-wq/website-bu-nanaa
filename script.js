@@ -29,6 +29,11 @@ const minuman = [
 const urlParams = new URLSearchParams(window.location.search);
 const nomorMeja = urlParams.get('meja') || 'Tanpa Meja';
 
+// =========================================================================
+// FITUR KERANJANG TERHUBUNG LOCALSTORAGE (Agar Tidak Hilang Saat Pindah Halaman)
+// =========================================================================
+let keranjang = JSON.parse(localStorage.getItem('keranjangBuNana')) || [];
+
 document.addEventListener("DOMContentLoaded", function() {
     const elMeja = document.getElementById("infoMeja");
     if (elMeja) {
@@ -37,6 +42,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     tampilkanMenu(makanan, "menuMakanan");
     tampilkanMenu(minuman, "menuMinuman");
+    
+    // Tampilkan keranjang yang tersimpan begitu halaman terbuka
+    perbaruiKeranjang();
 });
 
 // Fungsi Tampilkan Menu
@@ -72,9 +80,6 @@ function tampilkanMenu(daftar, idElemen) {
     });
 }
 
-// Fitur Keranjang Pesanan
-let keranjang = [];
-
 function tambahItem(namaDasar, harga, isDancow) {
     let namaFinal = namaDasar;
     if (isDancow) {
@@ -96,6 +101,9 @@ function tambahItem(namaDasar, harga, isDancow) {
     } else {
         keranjang.push({ nama: namaFinal, harga: harga, jumlah: 1 });
     }
+    
+    // Simpan ke memori browser
+    localStorage.setItem('keranjangBuNana', JSON.stringify(keranjang));
     perbaruiKeranjang();
 }
 
@@ -104,6 +112,9 @@ function ubahJumlah(index, delta) {
     if (keranjang[index].jumlah <= 0) {
         keranjang.splice(index, 1);
     }
+    
+    // Simpan ke memori browser
+    localStorage.setItem('keranjangBuNana', JSON.stringify(keranjang));
     perbaruiKeranjang();
 }
 
@@ -147,6 +158,7 @@ function perbaruiKeranjang() {
 
 function kosongkanKeranjang() {
     keranjang = [];
+    localStorage.removeItem('keranjangBuNana'); // Hapus memori browser saat dikosongkan
     perbaruiKeranjang();
 }
 
