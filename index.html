@@ -6,6 +6,55 @@
     <title>Lotek & Kupat Tahu Bu Nana</title>
 
     <link rel="stylesheet" href="style.css?v=2">
+    <style>
+        /* Gaya Tambahan Khusus Fitur Pembayaran & Mode Switcher */
+        .mode-switcher {
+            display: flex;
+            gap: 8px;
+            margin: 10px 0;
+            justify-content: center;
+        }
+        .btn-mode {
+            padding: 8px 14px;
+            border: 1px solid #27ae60;
+            background: #fff;
+            color: #27ae60;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .btn-mode.active {
+            background: #27ae60;
+            color: white;
+        }
+        .payment-section {
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            text-align: left;
+        }
+        .qris-box {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            background: white;
+            border: 1px dashed #27ae60;
+            border-radius: 6px;
+        }
+        .admin-card {
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            text-align: left;
+            font-size: 13px;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,13 +62,21 @@
         <h1>Lotek & Kupat Tahu Bu Nana</h1>
         <p>Silakan pilih makanan favorit kamu!</p>
         <h3 id="infoMeja">Nomor Meja: -</h3>
-        <nav>
+        
+        <!-- Tombol Switcher Pelanggan / Admin -->
+        <div class="mode-switcher">
+            <button type="button" class="btn-mode active" id="btnPelanggan" onclick="switchMode('pelanggan')">🛍️ Halaman Pelanggan</button>
+            <button type="button" class="btn-mode" id="btnAdmin" onclick="switchMode('admin')">🔒 Panel Admin / Kasir</button>
+        </div>
+
+        <nav id="navPelanggan">
             <a href="index.html">Menu Makanan</a>
             <a href="minuman.html">Menu Minuman</a>
         </nav>
     </header>
 
-    <main class="container">
+    <!-- ================= TAMPILAN PELANGGAN ================= -->
+    <main class="container" id="panelPelanggan">
         <h2>Menu Makanan</h2>
 
         <div class="menu" id="menuMakanan"></div>
@@ -28,19 +85,59 @@
             <h2>Pesanan Kamu</h2>
             <div id="daftarPesanan">Belum ada pesanan.</div>
             <p>Total: <strong id="total">Rp0</strong></p>
-            <button onclick="kosongkanKeranjang()">
+            
+            <!-- Pilihan Metode Pembayaran -->
+            <div class="payment-section">
+                <label for="metodePembayaran"><b>Metode Pembayaran:</b></label><br>
+                <select id="metodePembayaran" onchange="cekMetodeBayar()" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc;">
+                    <option value="Tunai">Tunai (Bayar di Kasir)</option>
+                    <option value="QRIS">QRIS (Non-Tunai)</option>
+                </select>
+
+                <!-- Box Tampilan QRIS -->
+                <div id="qrisBox" class="qris-box">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=QRIS_BU_NANA" alt="QRIS Bu Nana" style="width: 130px; height: auto;">
+                    <p style="font-size: 11px; color: #555; margin: 5px 0 0 0;">Scan QRIS di atas untuk melakukan pembayaran non-tunai.</p>
+                </div>
+            </div>
+
+            <button onclick="kosongkanKeranjang()" style="margin-top: 10px;">
                 Kosongkan Pesanan
             </button>
-            <!-- Tambahan Catatan & Tombol Kirim WA -->
-    <div style="margin-top: 15px; text-align: left;">
-        <label for="catatanPesanan"><b>Catatan Pesanan:</b></label><br>
-        <textarea id="catatanPesanan" placeholder="Contoh: Jangan terlalu pedas, es dikit..." style="width: 100%; height: 60px; margin-top: 5px; border-radius: 5px; padding: 8px; border: 1px solid #ccc;"></textarea>
-    </div>
 
-    <button onclick="kirimKeWhatsApp()" style="background-color: #25D366; color: white; padding: 12px; width: 100%; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; margin-top: 10px; cursor: pointer;">
-        Kirim Pesanan ke WhatsApp 📱
-    </button>
+            <!-- Tambahan Catatan & Tombol Kirim WA -->
+            <div style="margin-top: 15px; text-align: left;">
+                <label for="catatanPesanan"><b>Catatan Pesanan:</b></label><br>
+                <textarea id="catatanPesanan" placeholder="Contoh: Jangan terlalu pedas, es dikit..." style="width: 100%; height: 60px; margin-top: 5px; border-radius: 5px; padding: 8px; border: 1px solid #ccc;"></textarea>
+            </div>
+
+            <button onclick="kirimKeWhatsApp()" style="background-color: #25D366; color: white; padding: 12px; width: 100%; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; margin-top: 10px; cursor: pointer;">
+                Kirim Pesanan ke WhatsApp 📱
+            </button>
         </section>
+    </main>
+
+    <!-- ================= TAMPILAN PANEL ADMIN & REKAP ================= -->
+    <main class="container" id="panelAdmin" style="display: none;">
+        <h2>Panel Kasir & Rekap Penjualan</h2>
+
+        <!-- Ringkasan Pendapatan Lunas -->
+        <div style="background: #e8f8f5; border: 1px solid #52be80; padding: 12px; border-radius: 6px; margin-bottom: 15px; text-align: left;">
+            <h3 style="margin: 0 0 5px 0; color: #196f3d; font-size: 14px;">📊 Rekap Penjualan Hari Ini</h3>
+            <div style="font-size: 13px; display: flex; justify-content: space-between;">
+                <span>Total Porsi Terjual:</span>
+                <b id="rekapPorsi">0 Porsi</b>
+            </div>
+            <div style="font-size: 13px; display: flex; justify-content: space-between; margin-top: 5px; border-top: 1px solid #a9dfbf; padding-top: 5px;">
+                <span>Total Pendapatan Lunas:</span>
+                <b id="rekapPendapatan" style="color: #27ae60;">Rp0</b>
+            </div>
+        </div>
+
+        <h3>Daftar Nota Masuk:</h3>
+        <div id="daftarNotaAdmin">
+            <p style="font-style: italic; color: #777;">Belum ada pesanan masuk.</p>
+        </div>
     </main>
 
     <footer>
