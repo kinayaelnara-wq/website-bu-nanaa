@@ -7,7 +7,7 @@ const makanan = [
     { nama: "Nasi Telor", harga: 13000, icon: "🍳", gambar: "gambar/nasi-telor.jpg" },
     { nama: "IndTel Goreng", harga: 13000, icon: "🍜", gambar: "gambar/indtel-goreng.jpg" },
     { nama: "IndTel Rebus", harga: 13000, icon: "🍜", gambar: "gambar/indtel-rebus.jpg" },
-    { nama: "Soto", harga: 10000, icon: "🍲", gambar: "gambar/soto.jpg" }
+    { nama: "Soto", harga: 10000, icon: "🍲", gambar: "soto.jpg" }
 ];
 
 const minuman = [
