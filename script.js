@@ -1,12 +1,12 @@
 // Data Menu Lengkap Bu Nana dengan Icon/Visual
 const makanan = [
-    { nama: "Lotek", harga: 13000, icon: "🥗", gambar: "gambar/lotek.jpg" },
-    { nama: "Kupat Tahu", harga: 13000, icon: "🍲", gambar: "gambar/kupat-tahu.jpg" },
-    { nama: "Nasi Ayam Geprek", harga: 13000, icon: "🍗", gambar: "gambar/nasi-ayam-geprek.jpg" },
-    { nama: "Nasi Goreng", harga: 13000, icon: "🍛", gambar: "gambar/nasi-goreng.jpg" },
-    { nama: "Nasi Telor", harga: 13000, icon: "🍳", gambar: "gambar/nasi-telor.jpg" },
-    { nama: "IndTel Goreng", harga: 13000, icon: "🍜", gambar: "gambar/indtel-goreng.jpg" },
-    { nama: "IndTel Rebus", harga: 13000, icon: "🍜", gambar: "gambar/indtel-rebus.jpg" },
+    { nama: "Lotek", harga: 13000, icon: "🥗", gambar: "lotek.jpg" },
+    { nama: "Kupat Tahu", harga: 13000, icon: "🍲", gambar: "kupat-tahu.jpg" },
+    { nama: "Nasi Ayam Geprek", harga: 13000, icon: "🍗", gambar: "nasi-ayam-geprek.jpg" },
+    { nama: "Nasi Goreng", harga: 13000, icon: "🍛", gambar: "nasi-goreng.jpg" },
+    { nama: "Nasi Telor", harga: 13000, icon: "🍳", gambar: "nasi-telor.jpg" },
+    { nama: "IndTel Goreng", harga: 13000, icon: "🍜", gambar: "indtel-goreng.jpg" },
+    { nama: "IndTel Rebus", harga: 13000, icon: "🍜", gambar: "indtel-rebus.jpg" },
     { nama: "Soto", harga: 10000, icon: "🍲", gambar: "soto.jpg" }
 ];
 
